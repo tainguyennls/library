@@ -1,0 +1,75 @@
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles
+@import "~@coreui/coreui/scss/coreui";
+
+// If you want to add something do it here
+@import "custom";
+
+
+.breadcrumb {
+  background-color: #fafafa !important;
+}
+
+.ant-modal-close {
+  outline: none !important;
+}
+
+.ant-modal-header {
+  background-color: #1890ff !important;
+}
+
+.ant-modal-body {
+  padding: 24px 24px 1px 24px !important;
+}
+
+.ant-modal-footer {
+  display: none !important;
+  color: #fff !important;
+  font-weight: bold !important;
+}
+
+svg {
+  vertical-align: baseline !important;
+}
+
+.ant-form-item-label {
+  text-align: left !important;
+}
+
+.ant-calendar-range-picker-input{
+    text-align: left !important;
+}
+
+.ant-calendar-picker {
+  width: 350px !important;
+}
+
+// button {
+//   border: none !important;
+// }
+
+.ant-btn {
+  box-shadow: none !important;
+}
+
+.btn-function {
+  padding: 10px 0px !important;
+  margin-bottom:20px !important;
+  display: flex !important;
+}
+
+.btn-search{
+  flex-grow: 1 !important;
+  text-align: -webkit-right !important;
+}
+
+nz-upload-list {
+  display: none !important;
+}
+
+// .ant-upload-list-item-info .ng-tns-c7-13 {
+//   display: none !important;
+// }
+

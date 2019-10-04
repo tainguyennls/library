@@ -1,0 +1,66 @@
+<div class="btn-function">
+  <div style="flex-grow: 1">
+    <button (click)="showAddModal()" nz-button nzType="primary"><i title="Add"
+        class="fa fa-plus-circle"></i>Add</button>
+    <button (click)="dev()" nz-button nzType="default"><i title="Import" class="fa fa-cloud-upload"></i>Import</button>
+    <button (click)="dev()" nz-button nzType="default"><i title="Export"
+        class="fa fa-cloud-download"></i>Export</button>
+  </div>
+  <div class="btn-search">
+    <div style="width: 200px;">
+      <nz-input-group [nzSuffix]="suffixIconSearch">
+        <input type="text" nz-input placeholder="Search ..." />
+      </nz-input-group>
+      <ng-template #suffixIconSearch>
+        <i nz-icon nzType="search"></i>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<nz-table nzBordered #editRowTable [nzPageSize]="5" [nzData]="authors" [nzScroll]="{ x: '900px'}">
+  <thead>
+    <tr>
+      <th nzWidth="4%" class="center">#</th>
+      <th>Author Name</th>
+      <th nzWidth="15%" class="center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let author of editRowTable.data; let index = index">
+      <td>
+        <p>{{ index + 1 }}</p>
+      </td>
+      <td>{{ author.name }}</td>
+      <td class="actions">
+        <span><i (click)="showEditModal(author.idAuthor)" title="Edit" class="fa fa-pencil-square-o edit"></i></span>
+        <span><i (click)="delete(author.idAuthor)" title="Delete" class="fa fa-trash del"></i></span>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-child-name" class="modal-title pull-left">{{action}} Author</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="submitForm()">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label col-form-label-sm">Author Name</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control col-lg-14" id="authorName" name="name" formControlName="name">
+            </div>
+          </div>
+          <div style="text-align: right">
+            <button nz-button nzType="primary" type="button" [disabled]="!form.valid" (click)="save()">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

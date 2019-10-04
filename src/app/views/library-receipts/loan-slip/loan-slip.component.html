@@ -1,0 +1,56 @@
+<div style="padding: 10px 0px; margin-bottom:20px;display: flex;">
+  <div style="flex-grow: 1">
+    <a style="font-weight: bold" [routerLink]="['add-loan-slip']" nz-button nzType="primary"><i style="padding: 5px;"
+        title="Add" class="fa fa-plus"></i>Add</a>
+  </div>
+  <div style="flex-grow: 1; text-align: -webkit-right">
+    <div style="width: 200px;">
+      <nz-input-group [nzSuffix]="suffixIconSearch">
+        <input type="text" nz-input placeholder="Search ..." />
+      </nz-input-group>
+      <ng-template #suffixIconSearch>
+        <i nz-icon nzType="search"></i>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<nz-table 
+  nzBordered 
+  #editRowTable 
+  [nzPageSize]="5" 
+  [nzData]="loanSlips"
+  [nzScroll]="{ x: '900px'}"
+  >
+  <thead>
+    <tr>
+      <th nzWidth="4%" class="center">#</th>
+      <th>User</th>
+      <th>Librarian</th>
+      <th nzWidth="15%">Date borrow</th>
+      <th nzWidth="15%">Date return</th>
+      <th nzWidth="5%">Quantity</th>
+      <th nzWidth="10%">Status</th>
+      <th nzWidth="15%" class="center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let loanSlip of editRowTable.data; let index = index">
+      <td>
+        <p>{{ index }}</p>
+      </td>
+      <td>{{ loanSlip.userName }}</td>
+      <td>{{ loanSlip.librarianName }}</td>
+      <td>{{ loanSlip.dateBorrow }}</td>
+      <td>{{ loanSlip.dateWillReturn }}</td>
+      <td>
+          <p>{{ loanSlip.quantity }}</p>
+      </td>
+      <td>{{ loanSlip.status }}</td>
+      <td class="actions">
+        <span><i [routerLink]="['loan-slip-detail', 1]" title="View detail" class="fa fa-info-circle detail"></i></span>
+        <!-- <span><i (click)="dev()" title="Edit" class="fa fa-pencil-square-o edit"></i></span> -->
+        <span><i (click)="dev()" title="Delete" class="fa fa-trash del"></i></span>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

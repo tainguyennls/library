@@ -1,0 +1,74 @@
+<div class="btn-function">
+  <div style="flex-grow: 1">
+    <button (click)="showAddModal()" nz-button nzType="primary"><i title="Add" class="fa fa-plus-circle"></i>Add</button>
+    <button (click)="dev()" nz-button nzType="default"><i title="Import" class="fa fa-cloud-upload"></i>Import</button>
+    <button (click)="dev()" nz-button nzType="default"><i title="Export" class="fa fa-cloud-download"></i>Export</button>
+  </div>
+  <div class="btn-search">
+    <div style="width: 200px;">
+      <nz-input-group [nzSuffix]="suffixIconSearch">
+        <input type="text" nz-input placeholder="Search ..." />
+      </nz-input-group>
+      <ng-template #suffixIconSearch>
+        <i nz-icon nzType="search"></i>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<nz-table nzBordered #editRowTable [nzPageSize]="5" [nzData]="readerTypes" [nzScroll]="{ x: '900px'}">
+  <thead>
+    <tr>
+      <th nzWidth="4%" class="center">#</th>
+      <th>Type</th>
+      <th>Book Limit</th>
+      <th nzWidth="15%" class="center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let readerType of editRowTable.data; let index = index">
+      <td>
+        <p>{{ index + 1 }}</p>
+      </td>
+      <td>{{ readerType.name }}</td>
+      <td>{{ readerType.bookLimit }}</td>
+      <td class="actions">
+        <span><i (click)="showEditModal(readerType.idReaderType)" title="Edit" class="fa fa-pencil-square-o edit"></i></span>
+        <span><i (click)="delete(readerType.idReaderType)" title="Delete" class="fa fa-trash del"></i></span>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<div style="border-radius: 0 !important" bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-child-name" class="modal-title pull-left">Reader Type</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name">Name of type</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24">
+              <input type="text" nz-input formControlName="name" id="name" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="bookLimit">Book limit</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24">
+              <input type="number" nz-input formControlName="bookLimit" id="bookLimit" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control [nzSm]="24" [nzXs]="24" style="text-align: right;">
+              <button nz-button nzType="primary" type="button" [disabled]="!form.valid" (click)="save()">Save</button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

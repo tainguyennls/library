@@ -1,0 +1,83 @@
+<div class="card">
+    <div class="card-header">
+      <h3> Reader <button class="btn btn-lg btn-primary" (click)="open(content, 0)" style="float: right;"><i class="fa fa-plus"></i></button></h3>
+      
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>ID Card Number</th>
+                        <th>Full Name</th>
+                        <th>Date of birth</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>User Name</th>
+                        <th>RDT_ID</th>
+                        <th style="width: 150px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of librarians">
+                        <td> {{row.fullName}}</td>
+                        <td>{{row.email}}</td>
+                        <td> {{row.phone}}</td>
+                        <td>{{row.userName}}</td>
+                        <td>
+                            <button class="btn btn-success" (click)="open(content, row.id)"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-danger" (click)="delete(row.id)"><i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Librarian</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label col-form-label-sm">Full Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control col-lg-10" id="txtFullName" name="fullName" [(ngModel)] = "librarian.fullName" placeholder="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label col-form-label-sm">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control col-lg-10" id="txtEmail" name="email" [(ngModel)]= "librarian.email" placeholder="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label col-form-label-sm">Phone</label>
+                    <div class="col-sm-10">
+                        <input type="tel" class="form-control col-lg-10" id="txtPhone" name="phone" [(ngModel)] = "librarian.phone" placeholder="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label col-form-label-sm">User Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control col-lg-10" id="txtUserName" name="userName" [(ngModel)]= "librarian.userName" placeholder="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label col-form-label-sm">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control col-lg-10" id="txtPassword" name="password" [(ngModel)]= "librarian.password" placeholder="">
+                    </div>
+                  </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click) = "save()">Save</button>
+            </div>
+          </ng-template>
+    </div>
+  </div>

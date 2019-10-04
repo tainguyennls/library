@@ -1,0 +1,199 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-7">
+      <div class="book-title">
+        <h4 style="padding: 5px 0px; margin-bottom: 20px">Add new Book Title</h4>
+        <form id="book-title" nz-form [formGroup]="form" (ngSubmit)="submitForm()">
+
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="10" nzRequired nzFor="title">Title</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24" nzSpan="10">
+              <input nz-input formControlName="title" id="title" />
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="28" nzRequired nzFor="edition">Edition</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="28">
+              <input type="number" nz-input formControlName="edition" id="edition" />
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="pages">Pages</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24">
+              <input type="number" nz-input formControlName="pages" id="pages" />
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="size">Size</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24">
+              <input type="number" nz-input formControlName="size" id="size" />
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="publishingInfo">Publishing info</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24">
+              <input nz-input formControlName="publishingInfo" id="publishingInfo" />
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="callNumber">Call number</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24">
+              <input nz-input formControlName="callNumber" id="callNumber" />
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="ISBN">ISBN</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24">
+              <input nz-input formControlName="ISBN" id="ISBN" />
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="yearPublish">Year publish</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24">
+              <input type="number" nz-input formControlName="yearPublish" id="yearPublish" />
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="lst-authors">Authors</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24">
+              <div>
+                <input nz-input [(ngModel)]="authorChosen" [ngModelOptions]="{standalone: true}"
+                  placeholder="Type name of author" (input)="searchAuthor($event.target?.value)"
+                  [nzAutocomplete]="autoauthors" value="authorChosen" />
+                <nz-autocomplete #autoauthors>
+                  <nz-auto-option (click)="addAuthor(auth.idAuthor)" *ngFor="let auth of authorsFiltered"
+                    [nzValue]="auth.name">{{ auth.name }}</nz-auto-option>
+                </nz-autocomplete>
+              </div>
+              <div *ngIf="authors.length > 0" id="lst-authors">
+                <div *ngFor="let author of authors" class="item">
+                  <p class="name"> {{author.name}}
+                  </p>
+                  <p class="option">
+                    <span (click)="removeAuthor(author.idAuthor)" class="close">&times;</span>
+                  </p>
+                </div>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="lst-subjects">Subjects</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24">
+              <div>
+                <input 
+                  nz-input 
+                  [(ngModel)]="subjectChosen" 
+                  [ngModelOptions]="{standalone: true}"
+                  placeholder="Type name of subject" 
+                  (input)="searchSubject($event.target?.value)"
+                  [nzAutocomplete]="autosubjects" 
+                  nzValue="subjectChosen" 
+                />
+                <nz-autocomplete #autosubjects>
+                  <nz-auto-option (click)="addSubject(sub.idSubject)" *ngFor="let sub of subjectsFiltered"
+                    [nzValue]="sub.name">{{ sub.name }}</nz-auto-option>
+                </nz-autocomplete>
+              </div>
+              <div *ngIf="subjects.length > 0" id="lst-subjects">
+                <div *ngFor="let subject of subjects" class="item">
+                  <p class="name"> {{subject.name}}
+                  </p>
+                  <p class="option">
+                    <span (click)="removeSubject(subject.idSubject)" class="close">&times;</span>
+                  </p>
+                </div>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="description">Description</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24">
+              <textarea rows="4" nz-input formControlName="description" id="description"></textarea>
+            </nz-form-control>
+          </nz-form-item>
+
+        </form>
+      </div>
+    </div>
+
+    <div class="col-lg-5 upload-section">
+      <div *ngIf="!photoChosen">
+        <div class="canvas-choose-photo">
+          <label>
+            <input type="file" (change)="changePhoto($event)">
+            <a></a>
+            <i class="fa fa-picture-o"></i>
+            <p class="ant-upload-text">Click here to choose photo</p>
+          </label>
+        </div>
+      </div>
+      <div class="canvas-photo" *ngIf="photoChosen" [ngStyle]="{'background-image':'url(' + photoChosen + ')'}">
+      </div>
+      <div *ngIf="photoChosen" class="change-canvas-photo">
+        <label>
+          <input type="file" (change)="changePhoto($event)">
+          <a nz-button nzType="primary">Change</a>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row upload-table">
+    <div class="upload-table-header">
+      <h4 class="upload-table-header-left">List of books</h4>
+      <div class="upload-table-header-right"><a (click)="dev()">Help import ?</a></div>
+    </div>
+    <div class="import-excel">
+      <label *ngIf="!booksToUpload.length">
+        <input type="file" (change)="importBook($event)">
+        <a nz-button nzType="primary"><i title="Import" class="fa fa-cloud-upload"></i>Import Excel</a>
+      </label>
+      <div *ngIf="booksToUpload.length">
+        <button (click)="resetBookImported()" nz-button nzType="primary"><i class="fa fa-eraser"
+            aria-hidden="true"></i>Reset</button>
+      </div>
+    </div>
+    <nz-table nzBordered #editRowTable [nzPageSize]="10" [nzData]="booksToUpload" [nzScroll]="{ x: '900px'}"
+      style="white-space: nowrap; width: 100% !important">
+      <thead>
+        <tr>
+          <th nzWidth="4%" class="center">#</th>
+          <th nzWidth="20%">Lib Code</th>
+          <th nzWidth="20%">Barcode</th>
+          <th nzWidth="20%">Status</th>
+          <th nzWidth="10%" class="center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of editRowTable.data; let index = index">
+          <td>
+            <p>{{index + 1 }}</p>
+          </td>
+          <td>{{ book.libCode }}</td>
+          <td>{{ book.idBook }}</td>
+          <td>{{ book.status }}</td>
+          <td class="actions">
+            <span><i (click)="deleteBookUpload(book.idBook)" title="Delete" class="fa fa-trash del"></i></span>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+  <div class="row btn-option-submit">
+    <div class="btn-action">
+      <button form="book-title" (click)="pushBookTitle()" nz-button nzType="primary"><i class="fa fa-save" aria-hidden="true"></i>Save</button>
+    </div>
+  </div>
+</div>
+
+<button (click)="pushBookTitle()">Submit</button>

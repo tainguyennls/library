@@ -1,0 +1,94 @@
+<div class="btn-function">
+  <div style="flex-grow: 1">
+    <button (click)="showAddModal()" nz-button nzType="primary"><i title="Add" class="fa fa-plus-circle"></i>Add</button>
+    <button (click)="dev()" nz-button nzType="default"><i title="Import" class="fa fa-cloud-upload"></i>Import</button>
+    <button (click)="dev()" nz-button nzType="default"><i title="Export" class="fa fa-cloud-download"></i>Export</button>
+  </div>
+  <div class="btn-search">
+    <div style="width: 200px;">
+      <nz-input-group [nzSuffix]="suffixIconSearch">
+        <input type="text" nz-input placeholder="Search ..." />
+      </nz-input-group>
+      <ng-template #suffixIconSearch>
+        <i nz-icon nzType="search"></i>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<nz-table nzBordered #editRowTable [nzPageSize]="5" [nzData]="librarians" [nzScroll]="{ x: '900px'}">
+  <thead>
+    <tr>
+      <th nzWidth="4%" class="center">#</th>
+      <th>User Name</th>
+      <th>Full Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th nzWidth="15%" class="center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let librarian of editRowTable.data; let index = index">
+      <td>
+        <p>{{ index + 1 }}</p>
+      </td>
+      <td>{{ librarian.userName }}</td>
+      <td>{{ librarian.fullName }}</td>
+      <td>{{ librarian.email }}</td>
+      <td>{{ librarian.phone }}</td>
+      <td class="actions">
+        <span><i (click)="showEditModal(librarian.idLibrarian)" title="Edit" class="fa fa-pencil-square-o edit"></i></span>
+        <span><i (click)="delete(librarian.idLibrarian)" title="Delete" class="fa fa-trash del"></i></span>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-child-name" class="modal-title pull-left">{{action}} Librarian</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="submitForm()">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label col-form-label-sm">User Name</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control col-lg-14" id="userName" name="userName" formControlName="userName">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label col-form-label-sm">Password</label>
+            <div class="col-sm-9">
+              <input type="password" class="form-control col-lg-14" id="password" name="password" formControlName="password">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label col-form-label-sm">Full Name</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control col-lg-14" id="fullName" name="fullName" formControlName="fullName">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label col-form-label-sm">Email</label>
+            <div class="col-sm-9">
+              <input type="email" class="form-control col-lg-14" id="email" name="email" formControlName="email">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label col-form-label-sm">Phone</label>
+            <div class="col-sm-9">
+              <input type="tel" class="form-control col-lg-14" id="phone" name="phone" formControlName="phone">
+            </div>
+          </div>
+          <div class="modal-footer">
+              <button nz-button nzType="primary" type="button" [disabled]="!form.valid" (click)="save()">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

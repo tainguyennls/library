@@ -1,0 +1,228 @@
+.editable-row-operations a {
+  margin-right: 8px;
+}
+
+.center {
+  text-align: center !important;
+}
+
+p {
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
+
+.actions {
+  text-align: center !important;
+
+  .del {
+    cursor: pointer;
+    padding: 5px 2px;
+    color: red;
+    font-size: 1rem;
+  }
+
+  .edit {
+    cursor: pointer;
+    padding: 5px 2px;
+    color: #57ea57;
+    font-size: 1rem;
+    margin: 0px 5px;
+  }
+
+  .detail {
+    cursor: pointer;
+    padding: 5px 2px;
+    font-size: 1rem;
+    margin-right: 5px;
+  }
+}
+
+._ngcontent-rdk-c2 {
+  padding: 0 !important;
+}
+
+[nz-form] {
+  max-width: 700px;
+}
+
+.register-are {
+  margin-bottom: 8px;
+}
+
+.btn-save {
+  border-top: 1px solid #c8ced3;
+  padding-top: 10px;
+  margin-bottom: 0px !important;
+  text-align: right;
+}
+
+.book-title {
+  // border-bottom: 1px solid #c8ced3;
+  padding-bottom: 10px;
+  margin-bottom: 20px !important;
+}
+
+.footer-btn {
+  border-top: 1px solid #c8ced3;
+  padding-top: 20px;
+  margin-top: 10px !important;
+  margin-bottom: 3rem;
+}
+
+.ant-form-item {
+  margin: 0px 0px 10px !important;
+}
+
+#lst-authors,
+#lst-subjects {
+  max-height: 200px !important;
+  overflow-y: scroll !important;
+  border: 1px solid #d9d9d9 !important;
+
+  .item {
+    display: flex !important;
+    background: #f1f8ff !important;
+    margin-bottom: 3px !important;
+
+    .name {
+      flex-grow: 1 !important;
+      padding-left: 10px !important;
+      text-align: left !important;
+      height: 100%;
+      align-self: center !important
+    }
+
+    .option {
+      flex-grow: 1 !important;
+      text-align: right !important;
+      overflow: hidden !important;
+
+      .close {
+        font-size: 1rem !important;
+        padding: 15px !important;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 0.4em;
+    height: 0.4em;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
+
+    &:hover {
+      background: #c1c1c1;
+    }
+  }
+}
+
+.fa {
+  padding: 5px !important;
+}
+
+input[type='file'] {
+  color: transparent;
+}
+
+.upload-table {
+  // border-top: 1px solid#c8ced3;
+  border-bottom: 1px solid#c8ced3;
+
+  .upload-table-header {
+    display: flex !important;
+    width: 100% !important;
+    padding-bottom: 10px;
+    align-items: baseline;
+    border-bottom: 1px solid#c8ced3;
+
+    .upload-table-header-left {
+      flex-grow: 1 !important;
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    .upload-table-header-right {
+      flex-grow: 1 !important;
+      text-align: right !important;
+
+    }
+  }
+
+  .import-excel {
+    width: 100% !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+
+    label {
+      color: #fff;
+      margin: 0 !important;
+    }
+
+    // .btn-reset {
+    //   width: 100% !important;
+    // }
+  }
+
+}
+
+.btn-option-submit {
+  margin-bottom: 30px !important;
+
+  .btn-action {
+    margin-top: 20px !important
+  }
+
+}
+
+.canvas-photo {
+  height: 300px;
+  width: 230px;
+  margin: 0 auto;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.change-canvas-photo {
+  margin-top: 20px;
+  text-align: center;
+
+  a {
+    color: #fff;
+  }
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.upload-section {
+  margin-top: 55px !important;
+  margin-bottom: 20px !important;
+
+  .canvas-choose-photo {
+    border: 1px solid #c8ced3;
+    padding: 20px 30px;
+    text-align: center;
+    width: 200px;
+    cursor: pointer;
+    margin: 0 auto;
+
+    a {
+      color: #fff;
+    }
+
+    i {
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    p {
+      cursor: pointer;
+    }
+  }
+}

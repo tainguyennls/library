@@ -1,0 +1,105 @@
+<div id="export">
+
+    <div class="info-loan">
+      <h4 style="padding: 5px 0px; margin-bottom: 5px">Loan information</h4>
+      <form id="slip" nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="10"  nzFor="user">User</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzSpan="10">
+            <!-- <input nz-input formControlName="user" id="user" /> -->
+            <span>{{receipt.user}}</span>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="28"  nzFor="librarian">Librarian</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="28">
+            <!-- <input nz-input formControlName="librarian" id="librarian" /> -->
+            <span>{{receipt.librarian}}</span>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="borrowTime">Borrow time</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+              <!-- <nz-range-picker formControlName="borrowTime" id="borrowTime"></nz-range-picker> -->
+              <span>{{receipt.borrowTime}}</span>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="returnTime">Return time</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+              <!-- <nz-date-picker formControlName="returnTime" id="returnTime"></nz-date-picker> -->
+              <span>{{receipt.returnTime}}</span>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="quantity">Quantity</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+              <!-- <input nz-input formControlName="quantity" id="quantity" /> -->
+              <span>{{receipt.quantity}}</span>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="status">Status</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+              <!-- <input nz-input formControlName="status" id="status" /> -->
+              <span>{{receipt.status}}</span>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-form-item>
+      </form>
+    </div>
+    <div style="display: flex; margin-bottom: 20px;">
+      <h4 style="flex-grow: 1; margin: 0 !important;align-self: center">List of book</h4>
+      <!-- <form style="flex-grow: 1; text-align: -webkit-right; max-width: 370px;" nz-form [formGroup]="validateForm"
+        (ngSubmit)="submitForm()">
+        <nz-input-group [nzSuffix]="suffixIconSearch">
+          <div style="display: flex; flex-direction: row;">
+            <label style="padding: 5px ; margin: 0 !important; font-weight: bold">Search:</label>
+            <input style="border-radius: 4px !important; text-align: left" type="text" nz-input
+              placeholder="Enter the barcode of book you want to add" />
+          </div>
+        </nz-input-group>
+      </form> -->
+      <div style="cursor: pointer" (click)="dev()">
+        <i style="font-size: 25px; margin-right: 10px; color: forestgreen" class="fa fa-print" aria-hidden="true"></i>Print loan slip detail
+    </div>
+    </div>
+    
+    <nz-table 
+        nzBordered
+        #editRowTable 
+        [nzPageSize]="5" 
+        [nzData]="listOfData"
+        [nzScroll]="{ x: '900px'}" 
+        style="white-space: nowrap; margin-bottom: 30px" 
+      >
+      <thead>
+        <tr>
+          <th nzWidth="4%" class="center">#</th>
+          <th nzWidth="20%">Book Id</th>
+          <th>Book name</th>
+          <th nzWidth="25%">Author</th>
+          <!-- <th nzWidth="10%" class="center">Action</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let receipt of editRowTable.data">
+          <td>
+            <p>{{ receipt.id }}</p>
+          </td>
+          <td>{{ receipt.user }}</td>
+          <td>{{ receipt.librarian }}</td>
+          <td style="word-wrap:break-word">{{ receipt.dateBorrow }}</td>
+          <!-- <td class="actions">
+            <span><i (click) = "dev()" title="Delete" class="fa fa-trash del"></i></span>
+          </td> -->
+        </tr>
+      </tbody>
+    </nz-table>
+</div>
+
+<!-- <div class="footer-btn">
+  <button nz-button (click)="resetForm($event)">Reset</button>
+  <button nz-button nzType="primary" form="slip">Save</button>
+</div> -->
